@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<meta charset="utf-8">
+<meta   charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -13,104 +13,210 @@
             
         var xmlhttp;
             
-        function ConvertFormToJSON(){
+//         function ConvertFormToJSON(){
         	
-            var array = jQuery('form#start_chat').serializeArray();
-            var json = {};
+//             var array = jQuery('form#start_chat').serializeArray();
+//             var json = {};
             
-            jQuery.each(array, function() {
-                json[this.name] = this.value || '';
-            });
+//             jQuery.each(array, function() {
+//                 json[this.name] = this.value || '';
+//             });
             
-            return json;
-        }
-
-        jQuery(document).on('ready', function() {
-
-            $("#sub1").click(function(event){
-            	event.preventDefault();
-                var json = ConvertFormToJSON();
-                //alert(JSON.stringify(json));
-                console.log(JSON.stringify(json));
+//             return json;
+//         }
+        jQuery(document).on('ready', function() {                
                 
-                
-                xmlhttp = new XMLHttpRequest();
-        	var url = "http://localhost:8080/273Project/rest/bson/client/read/2";
-        	
-        	
-        	 xmlhttp.open("POST",url);
-
-        	xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        	xmlhttp.send(JSON.stringify(json));
-        	//JSON.stringiy method converts a JavaScript value to a JSON string
-        	
-        // Create the callback:
-
-        //The readyState property holds the status of the XMLHttpRequest.
-        //4: request finished and response is ready
-        //200: "OK"
-        	xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState != 4) return; // Not there yet
-          if (xmlhttp.status != 200) {
-            // Handle request failure here...
-            return;
-          }
-          // Request successful, read the response
-          var resp = xmlhttp.responseText;
-          // ... and use it as needed by your app.
-        	$('#mfg').val(resp); 
-        	console.log(resp);
-        	//alert(resp);
-        }
-                
-                });
-                
-                
-            $("#changeleft").click(function(event)
+            $("#changeleft").click(function(event) 
             		{
-            	if(document.forms["form1"]["sensor3"].value==false)
+                
+                
+            	
+            	
+            	if((document.forms["form1"]["SpeedDownRight"].value)==null||
+            			(document.forms["form1"]["SpeedHead"].value)==null||
+            			(document.forms["form1"]["SpeedHead"].value)==""||
+            			(document.forms["form1"]["sensor1"].value)==null||
+            			(document.forms["form1"]["sensor1"].value)==""||
+            			(document.forms["form1"]["sensor2"].value)==null||
+            			(document.forms["form1"]["sensor2"].value)==""||
+            			(document.forms["form1"]["sensor3"].value)==null||
+            			(document.forms["form1"]["sensor3"].value)==""||
+            			(document.forms["form1"]["sensor4"].value)==null||
+            			(document.forms["form1"]["sensor4"].value)==""||
+            			(document.forms["form1"]["distance"].value)==null||
+            			(document.forms["form1"]["distance"].value)==""||
+            			(document.forms["form1"]["carspeed"].value)==null||
+            			(document.forms["form1"]["carspeed"].value)==""||
+            			(document.forms["form1"]["SpeedTopRight"].value)==null||
+            			(document.forms["form1"]["SpeedTopRight"].value)==""||
+            			(document.forms["form1"]["SpeedTopLeft"].value)==null||
+            			(document.forms["form1"]["SpeedTopLeft"].value)==""||
+            			(document.forms["form1"]["SpeedDownLeft"].value)==null||
+            			(document.forms["form1"]["SpeedDownLeft"].value)==""||
+            			(document.forms["form1"]["SpeedDownRight"].value)=="")
             		{
-            		
-            		if((document.forms["form1"]["SpeedTopLeft"].value>document.forms["form1"]["carspeed"].value)
-            				&& (document.forms["form1"]["SpeedDownLeft"].value<document.forms["form1"]["carspeed"].value))
-            				{
-            			document.getElementById("speed").innerHTML="Turning to left is safe<br> Top - left car's speed is greater than our car speed ("+document.forms["form1"]["SpeedTopLeft"].value+")<br>"
-            		+	"Bottom - left car s speed is lesser than our car speed("+document.forms["form1"]["SpeedDownLeft"].value+")";
-            				}
+            	alert('Input for every field is required');
             		}
+            	else
+            		{
+            	
+            		if((document.forms["form1"]["SpeedTopLeft"].value)>(document.forms["form1"]["carspeed"].value))
+             			document.getElementById("speed").innerHTML="Turning to left is safe <br> TLCS ("+document.forms["form1"]["SpeedTopLeft"].value+") > Car Speed ("+document.forms["form1"]["carspeed"].value+")<br>"
+             		+	"BLCS ("+document.forms["form1"]["SpeedDownLeft"].value+") < Carspeed ("+document.forms["form1"]["carspeed"].value+")";
+            			document.getElementById("a1").innerHTML="Steering Left";
+            		}
+				
             		});
             
             
             
             $("#changeright").click(function(event)
             		{
-            	if(document.forms["form1"]["sensor4"].value==false)
+            	       
+            	if((document.forms["form1"]["SpeedDownRight"].value)==null||
+            			(document.forms["form1"]["SpeedHead"].value)==null||
+            			(document.forms["form1"]["SpeedHead"].value)==""||
+            			(document.forms["form1"]["sensor1"].value)==null||
+            			(document.forms["form1"]["sensor1"].value)==""||
+            			(document.forms["form1"]["sensor2"].value)==null||
+            			(document.forms["form1"]["sensor2"].value)==""||
+            			(document.forms["form1"]["sensor3"].value)==null||
+            			(document.forms["form1"]["sensor3"].value)==""||
+            			(document.forms["form1"]["sensor4"].value)==null||
+            			(document.forms["form1"]["sensor4"].value)==""||
+            			(document.forms["form1"]["distance"].value)==null||
+            			(document.forms["form1"]["distance"].value)==""||
+            			(document.forms["form1"]["carspeed"].value)==null||
+            			(document.forms["form1"]["carspeed"].value)==""||
+            			(document.forms["form1"]["SpeedTopRight"].value)==null||
+            			(document.forms["form1"]["SpeedTopRight"].value)==""||
+            			(document.forms["form1"]["SpeedTopLeft"].value)==null||
+            			(document.forms["form1"]["SpeedTopLeft"].value)==""||
+            			(document.forms["form1"]["SpeedDownLeft"].value)==null||
+            			(document.forms["form1"]["SpeedDownLeft"].value)==""||
+            			(document.forms["form1"]["SpeedDownRight"].value)=="")
             		{
-            		
-            		if((document.forms["form1"]["SpeedTopRight"].value>document.forms["form1"]["carspeed"].value)
-            				&& (document.forms["form1"]["SpeedDownRight"].value<document.forms["form1"]["carspeed"].value))
-            				{
-            			document.getElementById("speed").innerHTML="Turning to right is safe<br> Top - right car's speed is greater than our car speed ("+document.forms["form1"]["SpeedTopLeft"].value+")<br>"
-            		+	"Bottom - right car s speed is lesser than our car speed("+document.forms["form1"]["SpeedDownLeft"].value+")";
-            				}
+            	alert('Input for every field is required');
             		}
+            	else
+            		{
+            		if((document.forms["form1"]["SpeedTopRight"].value) > (document.forms["form1"]["carspeed"].value))
+            			{
+            			document.getElementById("speed").innerHTML="Turning to right is safe<br> TRCS ("+document.forms["form1"]["SpeedTopRight"].value+") > Carspeed ("+document.forms["form1"]["carspeed"].value+") <br> "
+            		+	"BRCS ("+document.forms["form1"]["SpeedDownRight"].value+") < Carspeed ("+document.forms["form1"]["carspeed"].value+")";
+            		document.getElementById("a1").innerHTML="Steering Right";
+            			}
+            		else
+            			{
+                 		document.getElementById("a1").innerHTML="Unable to steer Right";
+                 		document.getElementById("speed").innerHTML="";
+            			}
+            		}
+	
             		});
             
+            $("#reset").click(function(event)
+            		{
+            	document.getElementById("a1").innerHTML="";
+            	document.getElementById("a2").innerHTML="";
+            	document.getElementById("sh").innerHTML="";
+            	document.getElementById("sl").innerHTML="";
+            	document.getElementById("sr").innerHTML="";
+            	document.getElementById("sd").innerHTML="";
+            	document.getElementById("speed").innerHTML="";
+            	document.getElementById("speed1").innerHTML="";
+            	
+            		});
             
+            $("#bootstrap").click(function(event)
+            		{
+            	event.preventDefault();
+            	 
+            	var device=["Right Sensor","Back Sensor","Left Sensor","Front Sensor"];
+            	var elements=["b1","b2","b3","b4"];
+            	for(i=0;i<device.length;i++)
+            	{
+        		var url = "http://localhost:8080/273Project/rest/bson/client/bootstrap/"+device[i];
+        		xmlhttp = new XMLHttpRequest();
+        		  xmlhttp.open("GET",url,false);
+               	 xmlhttp.send();
+        	 var resp = xmlhttp.responseText;
+        	 document.getElementById(elements[i]).innerHTML=  "<font color=blue><li><p>"+resp+"</p></li></font>";
+            	}
+        	 //document.getElementById("b1").innerHTML="as" + resp;
+         	xmlhttp.onreadystatechange = function()
+         	{
+         		
+                if (xmlhttp.readyState != 4) return; // Not there yet
+                if (xmlhttp.status != 200) 
+                {
+                  // Handle request failure here...
+                  return;
+                }
+                // Request successful, read the response
+                document.getElementById(elements[i]).innerHTML=  resp;
+            //    ... and use it as needed by your app.
+             }
+            //	}
+          
+        
+               
+   
+            		});
             
                 
             $("#insert").click(function(event){
-            	//alert('hello');
+            	
+            	if((document.forms["form1"]["SpeedDownRight"].value)==null||
+            			(document.forms["form1"]["SpeedHead"].value)==null||
+            			(document.forms["form1"]["SpeedHead"].value)==""||
+            			(document.forms["form1"]["sensor1"].value)==null||
+            			(document.forms["form1"]["sensor1"].value)==""||
+            			(document.forms["form1"]["sensor2"].value)==null||
+            			(document.forms["form1"]["sensor2"].value)==""||
+            			(document.forms["form1"]["sensor3"].value)==null||
+            			(document.forms["form1"]["sensor3"].value)==""||
+            			(document.forms["form1"]["sensor4"].value)==null||
+            			(document.forms["form1"]["sensor4"].value)==""||
+            			(document.forms["form1"]["distance"].value)==null||
+            			(document.forms["form1"]["distance"].value)==""||
+            			(document.forms["form1"]["carspeed"].value)==null||
+            			(document.forms["form1"]["carspeed"].value)==""||
+            			(document.forms["form1"]["SpeedTopRight"].value)==null||
+            			(document.forms["form1"]["SpeedTopRight"].value)==""||
+            			(document.forms["form1"]["SpeedTopLeft"].value)==null||
+            			(document.forms["form1"]["SpeedTopLeft"].value)==""||
+            			(document.forms["form1"]["SpeedDownLeft"].value)==null||
+            			(document.forms["form1"]["SpeedDownLeft"].value)==""||
+            			(document.forms["form1"]["SpeedDownRight"].value)=="")
+            		{
+            	alert('Input for every field is required');
+            		}
+            	else
+            		{
             	event.preventDefault();
-                var json = ConvertFormToJSON();
-                console.log(JSON.stringify(json));
+          //      var json = ConvertFormToJSON();
+             //   console.log(JSON.stringify(json));
                 
                 
-                xmlhttp = new XMLHttpRequest();
                 
-                if(document.forms["form1"]["SpeedHead"].value<document.forms["form1"]["carspeed"].value &&
-                		)
+                
+                
+            	var current="Car's Current Speed is "+document.forms["form1"]["carspeed"].value;
+        		var adapt="";
+        		if((document.forms["form1"]["SpeedHead"].value<=document.forms["form1"]["carspeed"].value) &&
+        				(document.forms["form1"]["SpeedHead"].value!=null)&&
+        				(document.forms["form1"]["SpeedHead"].value>0))
+        			{
+        		adapt="Adapting to Front Car's Speed - "+document.forms["form1"]["SpeedHead"].value ;
+        		document.getElementById("a2").innerHTML="Slowing down and adapting to front car's speed";
+        			}
+        		else
+        			{
+        	  		document.getElementById("a2").innerHTML="";
+        			}
+        			
+                if(document.forms["form1"]["SpeedHead"].value<document.forms["form1"]["carspeed"].value)
                 	document.forms["form1"]["carspeed"].value=document.forms["form1"]["SpeedHead"].value;
         	
         		var url = "http://localhost:8080/273Project/rest/bson/client/update/"
@@ -118,28 +224,23 @@
     +document.forms["form1"]["sensor4"].value+"/"+document.forms["form1"]["distance"].value+"/"+document.forms["form1"]["SpeedHead"].value+"/"+document.forms["form1"]["SpeedDownLeft"].value+"/"+document.forms["form1"]["SpeedDownRight"].value+"/"
     +document.forms["form1"]["SpeedTopLeft"].value+"/"+document.forms["form1"]["SpeedTopRight"].value+"/"+document.forms["form1"]["carspeed"].value;
         	
-        		document.getElementById("sh").innerHTML = document.forms["form1"]["sensor1"].value + "<br>Speed of Front Car: "+document.forms["form1"]["SpeedHead"].value + "<br>Speed of Top Left Car: "+document.forms["form1"]["SpeedTopLeft"].value+ "<br>Speed of Top Right Car: "+document.forms["form1"]["SpeedTopRight"].value ;
-        		document.getElementById("sd").innerHTML = document.forms["form1"]["sensor2"].value+ "<br>Speed of Bottom Left Car: "+document.forms["form1"]["SpeedDownLeft"].value+"<br>Speed of Bottom Right Car: "+document.forms["form1"]["SpeedDownRight"].value;
+        		document.getElementById("sh").innerHTML = document.forms["form1"]["sensor1"].value + "<br>FCS: "+document.forms["form1"]["SpeedHead"].value + "<br>TLCS: "+document.forms["form1"]["SpeedTopLeft"].value+ "<br>TRCS: "+document.forms["form1"]["SpeedTopRight"].value ;
+        		document.getElementById("sd").innerHTML = document.forms["form1"]["sensor2"].value+ "<br>BLCS: "+document.forms["form1"]["SpeedDownLeft"].value+"<br>BRCS: "+document.forms["form1"]["SpeedDownRight"].value;
         		document.getElementById("sl").innerHTML = document.forms["form1"]["sensor3"].value;
         		document.getElementById("sr").innerHTML = document.forms["form1"]["sensor4"].value;
-        		var current="Car's Current Speed is "+document.forms["form1"]["carspeed"].value;
-        		var adapt="";
-        		if(document.forms["form1"]["SpeedHead"].value<=document.forms["form1"]["carspeed"].value)
-        		adapt="Adapting to Front Car's Speed - "+document.forms["form1"]["SpeedHead"].value ;
+        	
         		
-        		document.getElementById("speed").innerHTML=current+"<br>"+adapt;
+        		document.getElementById("speed").innerHTML=current+"<br>";
+        		document.getElementById("speed1").innerHTML=adapt;
         		
-        		
-        		
+        		xmlhttp = new XMLHttpRequest();
         	 xmlhttp.open("POST",url);
-
-        	xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        	xmlhttp.send(JSON.stringify(json));
+        	 xmlhttp.send();
+        //	xmlhttp.setRequestHeader('Content-Type', 'application/json');
+        	
         	//JSON.stringiy method converts a JavaScript value to a JSON string
         	
         // Create the callback:
-
         //The readyState property holds the status of the XMLHttpRequest.
         //4: request finished and response is ready
         //200: "OK"
@@ -152,171 +253,13 @@
           // Request successful, read the response
           var resp = xmlhttp.responseText;
           // ... and use it as needed by your app.
-        	$('#sensor1').val(resp); 
+       // 	$('#sensor1').val(resp); 
         	console.log(resp);
         	//alert(resp);
         }
-                
-                });  
-                
-                
-                
-                
-                $("#upd").click(function(event){
-            	event.preventDefault();
-                var json = ConvertFormToJSON();
-                console.log(JSON.stringify(json));
-                
-                
-                xmlhttp = new XMLHttpRequest();
-        	var url = "http://localhost:8080/restservice/api/regupdate";
-        	
-        	
-        	 xmlhttp.open("PUT",url);
-
-        	xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        	xmlhttp.send(JSON.stringify(json));
-        	//JSON.stringiy method converts a JavaScript value to a JSON string
-        	
-        // Create the callback:
-
-        //The readyState property holds the status of the XMLHttpRequest.
-        //4: request finished and response is ready
-        //200: "OK"
-        	xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState != 4) return; // Not there yet
-          if (xmlhttp.status != 200) {
-            // Handle request failure here...
-            return;
-          }
-          // Request successful, read the response
-          var resp = xmlhttp.responseText;
-          // ... and use it as needed by your app.
-        	$('#phone').val(resp); 
-        	console.log(resp);
-        	//alert(resp);
         }
                 
-                });  
-                
-                $("#reg").click(function(event){
-            	event.preventDefault();
-                var json = ConvertFormToJSON();
-                console.log(JSON.stringify(json));
-                
-                
-                xmlhttp = new XMLHttpRequest();
-        	var url = "http://localhost:8080/restservice/api/regserver";
-        	
-        	
-        	 xmlhttp.open("POST",url);
-
-        	xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        	xmlhttp.send(JSON.stringify(json));
-        	//JSON.stringiy method converts a JavaScript value to a JSON string
-        	
-        // Create the callback:
-
-        //The readyState property holds the status of the XMLHttpRequest.
-        //4: request finished and response is ready
-        //200: "OK"
-        	xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState != 4) return; // Not there yet
-          if (xmlhttp.status != 200) {
-            // Handle request failure here...
-            return;
-          }
-          // Request successful, read the response
-          var resp = xmlhttp.responseText;
-          // ... and use it as needed by your app.
-        	$('#mfg').val(resp); 
-        	console.log(resp);
-        	//alert(resp);
-        }
-                
-                });
-                
-                $("#upd").click(function(event){
-            	event.preventDefault();
-                var json = ConvertFormToJSON();
-                console.log(JSON.stringify(json));
-                
-                
-                xmlhttp = new XMLHttpRequest();
-        	var url = "http://localhost:8080/restservice/api/regupdate";
-        	
-        	
-        	 xmlhttp.open("PUT",url);
-
-        	xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        	xmlhttp.send(JSON.stringify(json));
-        	//JSON.stringiy method converts a JavaScript value to a JSON string
-        	
-        // Create the callback:
-
-        //The readyState property holds the status of the XMLHttpRequest.
-        //4: request finished and response is ready
-        //200: "OK"
-        	xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState != 4) return; // Not there yet
-          if (xmlhttp.status != 200) {
-            // Handle request failure here...
-            return;
-          }
-          // Request successful, read the response
-          var resp = xmlhttp.responseText;
-          // ... and use it as needed by your app.
-        	$('#phone').val(resp); 
-        	console.log(resp);
-        	//alert(resp);
-        }
-                
-                });  
-                
-                $("#dreg").click(function(event){
-            	event.preventDefault();
-                var json = ConvertFormToJSON();
-                console.log(JSON.stringify(json));
-                
-                
-                xmlhttp = new XMLHttpRequest();
-        	var url = "http://localhost:8080/restservice/api/dreg";
-        	
-        	
-        	 xmlhttp.open("POST",url);
-
-        	xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        	xmlhttp.send(JSON.stringify(json));
-        	//JSON.stringiy method converts a JavaScript value to a JSON string
-        	
-        // Create the callback:
-
-        //The readyState property holds the status of the XMLHttpRequest.
-        //4: request finished and response is ready
-        //200: "OK"
-        	xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState != 4) return; // Not there yet
-          if (xmlhttp.status != 200) {
-            // Handle request failure here...
-            return;
-          }
-          // Request successful, read the response
-          var resp = xmlhttp.responseText;
-          // ... and use it as needed by your app.
-        	$('#mfg').val(resp); 
-        	console.log(resp);
-        	//alert(resp);
-        }
-                
-                });
-                
-                
-                
-                
+                });     
                 });
                 
                 
@@ -328,16 +271,18 @@
                 
                 
                 
-        function load() {
-        	  var xhttp = new XMLHttpRequest();
-        	  xhttp.onreadystatechange = function() {
-        	    if (xhttp.readyState == 4 && xhttp.status == 200) {
-        	     document.getElementById("fetch").innerHTML = xhttp.responseText;
-        	    }
-        	  };
-        	  xhttp.open("GET","http://localhost:8080/restservice/api/clientboot" );
-        	  xhttp.send();
-        	} 
+//         function load() 
+//         {
+//         	  var xhttp = new XMLHttpRequest();
+//         	  xhttp.onreadystatechange = function() 
+//         	  {
+//         	    if (xhttp.readyState == 4 && xhttp.status == 200) {
+//         	     document.getElementById("fetch").innerHTML = xhttp.responseText;
+//         	    }
+//         	  };
+//         	  xhttp.open("GET","http://localhost:8080/restservice/api/clientboot" );
+//         	  xhttp.send();
+//         	} 
                 
                 
                 
@@ -350,52 +295,6 @@
                 
                 
                 
-          /*      
-                
-        $("#fetch").click(function(event){
-        	event.preventDefault();
-            var json = ConvertFormToJSON();
-            console.log(JSON.stringify(json));
-            
-            
-            xmlhttp = new XMLHttpRequest();
-        var url = "http://localhost:8080/restservice/api/clientsave";
-
-
-         xmlhttp.open("GET",url);
-
-        xmlhttp.setRequestHeader('Content-Type', 'application/json');
-
-        xmlhttp.send(JSON.stringify(json));
-        //JSON.stringiy method converts a JavaScript value to a JSON string
-
-        //Create the callback:
-
-        //The readyState property holds the status of the XMLHttpRequest.
-        //4: request finished and response is ready
-        //200: "OK"
-        xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState != 4) return; // Not there yet
-        if (xmlhttp.status != 200) {
-        // Handle request failure here...
-        return;
-        }
-        // Request successful, read the response
-        var resp = xmlhttp.responseText;
-        // ... and use it as needed by your app.
-        $('#mfg').val(resp); 
-        console.log(resp);
-        //alert(resp);
-        }
-            
-            });
-            
-            
-            
-            
-            });
-            
-             */ 
              </script>
        </head>
     
@@ -409,11 +308,26 @@
         }
         
       
-        .backtop{
+        .backtop
+        {
 	padding:6px; 
-	color: grey; 
+	color: blue; 
 	background-color: white;
 	 border: black 2px solid;
+	 width:400px;
+	 height:100px;
+	 }
+	 
+	 .status
+	 {
+	 height:20px;
+	 border: black 2px solid;
+	 padding:12px;
+	 background-color: white;
+	 color:blue;
+	 width:200px;
+	 height:120px;
+	 }
     </style>
    
     
@@ -469,8 +383,7 @@
        <p><center>Speed Top Left<input type="text" id="SpeedTopLeft" name="SpeedTopLeft"></center>   </p><br>
        <p><center>Speed Top Right<input type="text" id="SpeedTopRight" name="SpeedTopRight"></center>   </p><br>  
         <p><center>Car Speed<input type="text" id="carspeed" name="carspeed"></center>   </p><br>
-          <center><button type="button" class="btn btn-primary" id="insert">Update</button></center> <br><br>
-     
+          <button type="button" class="btn btn-primary" id="bootstrap">Bootstrap</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="insert">Update</button><br><br>
     </form>    
       
           
@@ -496,14 +409,14 @@
             
           <div class="panel panel-primary">
 
-      <div class="panel-heading">Actuator 1 </div>
-      <div class="panel-body" id="a1">Value</div>
+      <div class="panel-heading">Steering</div>
+      <div class="panel-body" id="a1"></div>
         </div>
         <br>
          <div class="panel panel-primary">
              
               <div class="panel-heading">Sensor Left</div>
-      <div class="panel-body" id="sl" >Value</div>
+      <div class="panel-body" id="sl" ></div>
          </div>
         <br>
          <br>
@@ -535,12 +448,13 @@
                <div class="panel panel-primary">
                    
                    <div class="panel-heading">Sensor Head</div>
-                    <div class="panel-body" id="sh">Value</div>
+                    <div class="panel-body" id="sh"></div>
                </div>
                <br>
                <br>
                <br>
-               <center> <span class="backtop" id="speed"> Car Status</span></center>
+            <div class="status">   <center> <span id="speed"> Car Status</span></center></div><br><br>
+             <div class="status">   <center> <span id="speed1"> Car Status</span></div></center>
                <br>
             
                <br>
@@ -549,7 +463,7 @@
                <br>
                 <div class="panel panel-primary">
                 <div class="panel-heading"  >Sensor Down </div>
-      <div class="panel-body" id="sd">Value</div>
+      <div class="panel-body" id="sd"></div>
                </div>
                <br>
                
@@ -570,13 +484,13 @@
              <div class="panel panel-primary">
 
       
-                   <div class="panel-heading">Actuator 2</div>
-                    <div class="panel-body" id="a2">Value</div>
+                   <div class="panel-heading">Brakes</div>
+                    <div class="panel-body" id="a2"></div>
                       </div> 
                 <br>
                  <div class="panel panel-primary">
                  <div class="panel-heading" >Sensor Right </div>
-     			 <div class="panel-body" id="sr">Value</div>
+     			 <div class="panel-body" id="sr"></div>
                 </div>
                  <br>
          <br>
@@ -619,10 +533,14 @@
             
             
             <div class="col-lg-2" padding:"10px" style="background-color:lavender;"><center><h3>Console</h3></center>
-            <h4>Bootstrap</h4><li><p>Detect sensor right</p>
-            <li><p>Detect Sensor back</p></li>
-            <li><p>Detect sensor left</p></li>
-            <li><p>Detect sensor back</p></li>
+            <h4>Bootstrap</h4><li><p>Detect Sensor Right</p>
+        	 <div id="b1"></div>
+            <li><p>Detect Sensor Rear</p></li>
+              <div id="b2"></div> 
+            <li><p>Detect Sensor Left</p></li>
+           <div id="b3"></div> 
+            <li><p>Detect Sensor Head</p></li>
+                <div id="b4"></div>
             <li><p>Detect sensor brake system</p></li>
             <li><p>Detect sensor speed control</p></li>
             <li><p>Detect sensor gas system</p></li>
