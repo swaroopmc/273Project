@@ -1,4 +1,6 @@
 # CMPE-273-FinalProject
+
+Components: Java jersey api's, MongoDB
  Implementation of car lane changing and cruise control prototype in Java using Jersey REST api's. The communication between client and server is done with OMA LWM2M protocols
 
 Objective: 
