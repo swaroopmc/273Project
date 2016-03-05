@@ -11,3 +11,6 @@ Objective:
 ● To build a Adaptive Cruise Control System that regulates the speed of the vehicle, i.e, it slows down the vehicle if there is another vehicle ahead of it within the minimum threshold distance. Similarly it must increase the speed if there is another vehicle behind it within the minimum threshold distance.
 
 ● To build the gateway using Lightweight Machine to Machine protocol defined as per the OMA Lightweight Machine to Machine Specification.
+
+
+    ![alt text](Picture1.png "Description goes here")
