@@ -15,3 +15,7 @@ Objective:
 
 
  ![alt text](	Picture1.png)
+
+Web UI dashboard 
+
+![Alt text](cmpe273.png)
