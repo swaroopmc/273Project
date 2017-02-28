@@ -13,6 +13,7 @@ Objective:
 ● To build the gateway using Lightweight Machine to Machine protocol defined as per the OMA Lightweight Machine to Machine Specification.
 
 
+System Design
 
  ![alt text](	Picture1.png)
 
